@@ -18,8 +18,8 @@ with FTP('ftp.1000genomes.ebi.ac.uk') as ftp:
     with open('output_low.txt', 'w') as f_low, open('output_exo.txt', 'w') as f_exo, open('output_high.txt', 'w') as f_hig:
         for r in race_files:
             second_level_path = os.path.join(base_path,r)
-            ftp.cwd(second_level_path) # currently in 'data/ACB/'
-            individual_files = ftp.nlst() # ['HG01879'...]
+            ftp.cwd(second_level_path)  # currently in 'data/ACB/'
+            individual_files = ftp.nlst()  # ['HG01879'...]
 
             for i in individual_files:
                 third_level_path = os.path.join(second_level_path, i)
@@ -29,7 +29,7 @@ with FTP('ftp.1000genomes.ebi.ac.uk') as ftp:
                     print(a)
                     if a == 'alignment':
                         fourth_level_path = os.path.join(third_level_path, a)
-                        target_files = ftp.nlst(fourth_level_path) # *.bas, *.cram ...
+                        target_files = ftp.nlst(fourth_level_path)  # *.bas, *.cram ...
 
                         for t in target_files:
                             if t.endswith('.cram'):
@@ -40,7 +40,7 @@ with FTP('ftp.1000genomes.ebi.ac.uk') as ftp:
 
                     elif a == 'exome_alignment':
                         fourth_level_path = os.path.join(third_level_path, a)
-                        target_files = ftp.nlst(fourth_level_path) # *.bas, *.cram ...
+                        target_files = ftp.nlst(fourth_level_path)  # *.bas, *.cram ...
 
                         for t in target_files:
                             if t.endswith('.cram'):
@@ -51,7 +51,7 @@ with FTP('ftp.1000genomes.ebi.ac.uk') as ftp:
 
                     elif a == 'high_cov_alignment':
                         fourth_level_path = os.path.join(third_level_path, a)
-                        target_files = ftp.nlst(fourth_level_path) # *.bas, *.cram ...
+                        target_files = ftp.nlst(fourth_level_path)  # *.bas, *.cram ...
 
                         for t in target_files:
                             if t.endswith('.cram'):
@@ -61,4 +61,3 @@ with FTP('ftp.1000genomes.ebi.ac.uk') as ftp:
                                 print(line)
                     else:
                         print("###" + a)
-
